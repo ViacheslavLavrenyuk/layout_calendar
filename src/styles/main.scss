@@ -1,3 +1,46 @@
 body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 30px;
   margin: 0;
+}
+
+.calendar {
+  margin: 0 auto;
+  width: 714px;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+@each $days, $count in ("28": 28, "29": 29, "30": 30, "31": 31) {
+  @for $i from 1 through $count {
+    .calendar-#{$days} div:nth-child(#{$i}) {
+      background-color: #eee;
+      border: 1px solid #000;
+      box-sizing: border-box;
+      width: 100px;
+      height: 100px;
+      margin: 1px;
+      transition-duration: 0.5s;
+      line-height: 100px;
+      text-align: center;
+    }
+
+    .calendar-#{$days} div:nth-child(#{$i}):before {
+      content: "" + #{$i};
+    }
+  }
+}
+
+.calendar div:hover {
+  cursor: pointer;
+  background-color: pink;
+  transform: translateY(-20px);
+}
+
+@each $day, $left in ("mon": 0, "tue": 102px, "wed": 204px,
+"thu": 306px, "fri": 408px, "sat": 510px, "sun": 612px) {
+  .calendar-#{$day} div:first-child {
+    margin-left: #{$left};
+  }
 }
