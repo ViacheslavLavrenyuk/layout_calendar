@@ -27,7 +27,7 @@ body {
     }
 
     .calendar-#{$days} div:nth-child(#{$i}):before {
-      content: "" + #{$i};
+      content: "#{$i}";
     }
   }
 }
