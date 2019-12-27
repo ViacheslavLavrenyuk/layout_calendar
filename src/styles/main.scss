@@ -12,23 +12,30 @@ body {
   flex-wrap: wrap;
 }
 
-@each $days, $count in ("28": 28, "29": 29, "30": 30, "31": 31) {
-  @for $i from 1 through $count {
-    .calendar-#{$days} div:nth-child(#{$i}) {
-      background-color: #eee;
-      border: 1px solid #000;
-      box-sizing: border-box;
-      width: 100px;
-      height: 100px;
-      margin: 1px;
-      transition-duration: 0.5s;
-      line-height: 100px;
-      text-align: center;
-    }
+.calendar div {
+  text-align: center;
+  background-color: #eee;
+  border: 1px solid #000;
+  box-sizing: border-box;
+  margin: 1px;
+  transition-duration: 0.5s;
+  line-height: 100px;
+}
 
-    .calendar-#{$days} div:nth-child(#{$i}):before {
-      content: "#{$i}";
-    }
+@for $i from 1 through 31 {
+  .calendar div:nth-child(#{$i}) {
+    width: 100px;
+    height: 100px;
+  }
+
+  .calendar div:nth-child(#{$i}):before {
+    content: "#{$i}";
+  }
+}
+
+@for $i from 28 through 31 {
+  .calendar-#{$i} div:nth-last-child(-n+#{31-$i}) {
+    display: none;
   }
 }
 
